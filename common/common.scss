@@ -39,6 +39,11 @@
   border-bottom: 1px solid var(--primary-low);
 }
 
+// BigID-branded community: no "Powered by Discourse" badge
+.powered-by-discourse {
+  display: none;
+}
+
 // BigID button hierarchy: filled purple primary, white outlined secondary,
 // text buttons that fill on hover
 .btn-primary {
