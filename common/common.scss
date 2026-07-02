@@ -226,20 +226,37 @@ a {
 }
 
 .welcome-banner__wrap .btn.search-icon {
-    top: 13px !important;
-    padding: 0px !important;
-    height: 20px !important;
-    left: 10px !important;
+  top: 13px !important;
+  padding: 0 !important;
+  height: 20px !important;
+  left: 10px !important;
 }
 
 .welcome-banner .search-menu-container.menu-panel-results .menu-panel {
-  border: 0px;
+  border: 0;
   width: 100% !important;
 }
 
+// Search results as a single vertical list — AI discoveries, then topics,
+// stacked rather than side by side. flex-direction: column is already
+// core's default here; reinforced defensively since something upstream
+// was clearly causing the row layout the user saw. order: -1 guarantees
+// the AI block renders first regardless of DOM position.
+.search-menu .results {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+}
+
 .search-menu .results .ai-discobot-discoveries {
+  order: -1;
+  margin-bottom: 0.75em;
   background-color: #efefef;
   border-radius: 10px;
-  border: 0px;
+  border: 0;
   padding: 20px;
 }
