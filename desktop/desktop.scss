@@ -181,7 +181,7 @@ body.bigid-inline-composer {
 
     &.open {
       margin: 1.5em 0 2em 0px;
-      border: 1px solid var(--primary-low);
+      border: 0px;
     }
 
     .grippie {
@@ -193,6 +193,12 @@ body.bigid-inline-composer {
     .toggle-minimize,
     .toggle-fullscreen {
       display: none;
+    }
+    .toggle-save-and-close{
+      display:none;
+    }
+    .discard-button {
+      display:none;
     }
   }
 
