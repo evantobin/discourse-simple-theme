@@ -180,7 +180,7 @@ body.bigid-inline-composer {
     border-radius: var(--d-border-radius-large);
 
     &.open {
-      margin: 1.5em 0 2em 0px;
+      margin: 1.5em 0 2em 0px !important;
       border: 0px;
     }
 

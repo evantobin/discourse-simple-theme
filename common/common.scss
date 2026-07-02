@@ -247,6 +247,12 @@ a {
   box-shadow: none;
 }
 
+.search-menu
+  .results:has(.search-menu-initial-options)
+  .ai-discobot-discoveries {
+  display: none;
+}
+
 .welcome-banner__wrap .btn.search-icon {
   top: 13px !important;
   padding: 0 !important;
