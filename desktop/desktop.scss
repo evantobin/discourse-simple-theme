@@ -162,7 +162,7 @@ img.avatar {
    the end of the page content instead. */
 
 body.bigid-inline-composer {
-  #reply-control:not(.fullscreen) {
+  #reply-control {
     position: static;
     max-width: 100%;
     box-shadow: none;
@@ -177,6 +177,17 @@ body.bigid-inline-composer {
       // drag-to-resize is viewport-relative; it doesn't make sense in flow
       display: none;
     }
+
+    // floating-panel affordances that don't apply to an in-flow composer
+    .toggle-minimize,
+    .toggle-fullscreen {
+      display: none;
+    }
+  }
+
+  // the composer only appears on the page it was opened on
+  &.bigid-composer-offpage #reply-control {
+    display: none;
   }
 
   &.composer-open {
@@ -187,7 +198,7 @@ body.bigid-inline-composer {
     }
 
     // while composing, keep the composer directly under the conversation
-    .more-topics__container {
+    &:not(.bigid-composer-offpage) .more-topics__container {
       display: none;
     }
   }
