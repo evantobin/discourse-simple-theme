@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "sass:map";
+
 // Mulish is BigID's brand font; bundled as a theme asset so no external
 // font host is needed.
 @font-face {
@@ -33,10 +36,22 @@
   --shadow-modal: 0 16px 32px rgb(0 0 0 / 18%);
 }
 
-// Quiet, content-forward chrome: fine 1px borders instead of heavy shadows
+// Quiet, content-forward chrome: fine 1px borders instead of heavy shadows,
+// plus a brand-gradient accent strip along the top edge
 .d-header {
+  position: relative;
   box-shadow: var(--shadow-header);
   border-bottom: 1px solid var(--primary-low);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--bigid-gradient);
+  }
 }
 
 // BigID-branded community: no "Powered by Discourse" badge
@@ -44,16 +59,23 @@
   display: none;
 }
 
-// BigID button hierarchy: filled purple primary, white outlined secondary,
-// text buttons that fill on hover
+// BigID button hierarchy: gradient-filled primary, white outlined secondary,
+// text buttons that fill on hover. The primary's gradient sweeps into view
+// on hover/press rather than sitting static.
 .btn-primary {
+  background: var(--bigid-gradient);
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  border: none;
+  transition: background-position 200ms ease;
+
   &:hover,
   &.btn-hover {
-    background: var(--bigid-purple-hover);
+    background-position: 100% 0%;
   }
 
   &:active {
-    background: var(--bigid-purple-press);
+    filter: brightness(85%);
   }
 }
 
@@ -107,7 +129,10 @@ textarea,
   box-shadow: var(--shadow-dropdown);
 }
 
-// Tags follow the BigID chip pattern: grey pill, quiet text
+// Tags follow the BigID chip pattern (pill shape), colored from the accent
+// palette in rotation for some visual variety instead of flat grey. Unlike
+// categories (which carry real admin-configured colors we don't touch),
+// plain tags have no inherent color, so this is ours to have fun with.
 .discourse-tag {
   display: inline-flex;
   align-items: center;
@@ -121,13 +146,65 @@ textarea,
   }
 
   &:hover {
-    background: var(--primary-low);
-    color: var(--primary);
+    filter: brightness(92%);
+  }
+}
+
+$bigid-tag-accents: (
+  "coral": var(--bigid-accent-coral),
+  "violet": var(--bigid-accent-violet),
+  "pink": var(--bigid-accent-pink),
+  "orange": var(--bigid-accent-orange),
+  "sky": var(--bigid-accent-sky),
+  "mint": var(--bigid-accent-mint),
+);
+$bigid-tag-accent-count: list.length($bigid-tag-accents);
+
+@for $i from 1 through $bigid-tag-accent-count {
+  .discourse-tag:nth-of-type(#{$bigid-tag-accent-count}n + #{$i}) {
+    color: list.nth(map.values($bigid-tag-accents), $i);
+    background: color-mix(
+      in srgb,
+      list.nth(map.values($bigid-tag-accents), $i) 12%,
+      var(--secondary)
+    );
   }
 }
 
 a {
   color: var(--bigid-link-color);
+}
+
+// In-post content links get a gradient sweep on hover — scoped to prose
+// links only. A blanket a:hover rule would also transparent-out icon-only
+// links, since many icons render via fill: currentColor.
+.cooked a {
+  &:hover {
+    background: var(--bigid-gradient);
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-decoration: underline;
+    text-decoration-color: var(--bigid-link-color);
+  }
+}
+
+// Homepage hero: gradient headline for a bolder brand moment. The subheader
+// is a child of .welcome-banner__title (not a sibling), so its color and
+// -webkit-text-fill-color must be reset explicitly or it inherits the
+// parent's transparent fill and disappears.
+.welcome-banner__title {
+  background: var(--bigid-gradient);
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  .welcome-banner__subheader {
+    background: none;
+    background-clip: border-box;
+    color: var(--primary-high);
+    -webkit-text-fill-color: currentcolor;
+  }
 }
 
 // BigID focus treatment: a visible ring, never removed

@@ -9,10 +9,22 @@ $bigid-violet-deep: #6854a3;
 $bigid-link-color: dark-light-choose($bigid-purple, $bigid-violet);
 $bigid-visited-link-color: dark-light-choose($bigid-violet-deep, #9787b6);
 
+// The signature logo gradient (orange -> pink -> violet). Design-system
+// guidance reserves it for brand moments rather than product chrome; used
+// deliberately here for a bolder, more "BigID" community-site feel.
+$bigid-gradient: linear-gradient(90deg, #f68749 0%, #eb2069 35%, #6854a3 100%);
+
 :root {
   --bigid-purple: #{dark-light-choose($bigid-purple, $bigid-violet)};
   --bigid-purple-hover: #{dark-light-choose($bigid-purple-hover, #b992ff)};
   --bigid-purple-press: #{dark-light-choose($bigid-purple-press, #c9a9ff)};
   --bigid-link-color: #{$bigid-link-color};
   --bigid-visited-link-color: #{$bigid-visited-link-color};
+  --bigid-gradient: #{$bigid-gradient};
+  --bigid-accent-coral: #ff6b6b;
+  --bigid-accent-violet: #a777ff;
+  --bigid-accent-pink: #eb2069;
+  --bigid-accent-orange: #f68749;
+  --bigid-accent-sky: #1abcfe;
+  --bigid-accent-mint: #0acf83;
 }
