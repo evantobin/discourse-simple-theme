@@ -59,6 +59,17 @@
   display: none;
 }
 
+// BigID buttons: always bold labels, 4px radius, quick functional easing
+// (120ms standard curve from the design system), never bouncy.
+.btn {
+  font-weight: 700;
+  border-radius: var(--d-border-radius);
+  transition:
+    background-color 120ms cubic-bezier(0.2, 0, 0, 1),
+    border-color 120ms cubic-bezier(0.2, 0, 0, 1),
+    color 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
 // BigID button hierarchy: gradient-filled primary, white outlined secondary,
 // text buttons that fill on hover. The primary's gradient sweeps into view
 // on hover/press rather than sitting static.
@@ -168,6 +179,53 @@ $bigid-tag-accent-count: list.length($bigid-tag-accents);
       list.nth(map.values($bigid-tag-accents), $i) 12%,
       var(--secondary)
     );
+  }
+}
+
+// Data tables — BigID grid styling. Column headers become uppercase
+// micro-labels (11px / bold / muted / tracked), rows get fine 1px dividers
+// and a subtle hover, matching the design-system data grid. Covers the
+// shared d-table component, the user directory, and generic post tables.
+%bigid-table-header {
+  text-transform: uppercase;
+  font-size: var(--font-down-2);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--primary-medium);
+}
+
+.d-table__header-cell,
+.directory-table__column-header {
+  @extend %bigid-table-header;
+}
+
+.d-table__row,
+.directory-table__row {
+  border-bottom: 1px solid var(--primary-low);
+
+  &:hover {
+    background: var(--d-hover);
+  }
+}
+
+// Generic tables inside post content
+.cooked table {
+  border-collapse: collapse;
+
+  thead th {
+    @extend %bigid-table-header;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-low);
+  }
+
+  th,
+  td {
+    border: 1px solid var(--primary-low);
+    padding: 0.5em 0.75em;
+  }
+
+  tbody tr:hover {
+    background: var(--d-hover);
   }
 }
 

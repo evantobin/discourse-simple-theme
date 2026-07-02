@@ -3,9 +3,20 @@
     border: none;
   }
 
+  // BigID data-grid column headers: uppercase micro-labels
   .topic-list-header .topic-list-data {
-    color: var(--primary);
+    color: var(--primary-medium);
     background-color: var(--primary-very-low);
+    text-transform: uppercase;
+    font-size: var(--font-down-2);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+
+    // sort links inherit the header treatment rather than link-blue
+    a,
+    .d-icon {
+      color: var(--primary-medium);
+    }
   }
 
   .main-link {
