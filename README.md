@@ -8,3 +8,17 @@ A Discourse theme based on [Sam's simple theme](https://meta.discourse.org/t/sam
 - **BigID component styling** — outlined white secondary buttons, hover-fill text buttons, light-bordered inputs with purple focus, 8px-radius bordered modals/menus/user cards with black-alpha elevation, and pill-shaped tag chips.
 - **Inline composer** — the reply composer renders in the page flow at the end of the content (like a classic forum reply box) instead of floating over the bottom of the viewport. It only appears on the page it was opened on (hidden while browsing elsewhere, draft intact), and the minimize/fullscreen controls are removed. Desktop only; the mobile composer is unchanged.
 - **Simplified topic list** — inherited from the original theme: no views/activity/posters columns, a single latest-poster column, and original-post dates on each row.
+
+## Site logos
+
+`branding/` contains BigID logos generated from the design system's brand SVGs (gradient fingerprint-shield mark + neutral wordmark), sized for Discourse's Admin → Customize → Branding slots:
+
+| File | Slot |
+| --- | --- |
+| `logo.png` (434×160) | Primary logo |
+| `logo-dark.png` (434×160) | Primary logo — dark mode |
+| `logo-square.png` (512×512) | Square icon / mobile app icon |
+| `favicon.png` (128×128) | Favicon |
+| `logo-small.png` (120×120) | Small logo (shown when scrolled) |
+
+These are uploaded through the admin UI; they are not referenced by the theme itself.
