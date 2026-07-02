@@ -213,4 +213,12 @@ body.bigid-inline-composer {
       display: none;
     }
   }
+
+  // The reply composer is always open (always-open-composer.js), so the
+  // "Reply" button that would open it is redundant. Gated on this body
+  // class — which the initializer only adds once it has taken over — so
+  // that if the theme JS fails to load, the button stays available.
+  .topic-footer-main-buttons .btn-primary.create {
+    display: none;
+  }
 }
