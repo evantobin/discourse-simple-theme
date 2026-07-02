@@ -308,3 +308,46 @@ a {
   text-align: center;
   color: #878787;
 }
+
+// Auto-summary (bigid-auto-summary.gjs): an inline AI summary card rendered
+// at the top of the post stream. Styled as a BigID card with a subtle
+// brand-tinted surface.
+.bigid-auto-summary {
+  margin: 0 0 1.5em;
+  padding: 1em 1.25em;
+  border: 1px solid var(--primary-low);
+  border-radius: var(--d-border-radius-large);
+  background: var(--highlight-low, var(--primary-very-low));
+  box-shadow: var(--shadow-card);
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin: 0 0 0.5em;
+    font-size: var(--font-0);
+    font-weight: 700;
+    color: var(--primary);
+
+    .d-icon {
+      color: var(--tertiary);
+    }
+  }
+
+  &__body {
+    margin: 0;
+  }
+
+  &__loading {
+    color: var(--primary-medium);
+    font-style: italic;
+  }
+}
+
+// The auto-summary replaces the click-to-open "Summarize" button; hide it
+// while the auto-summary is active. Gated on the body class so the button
+// stays available if the theme JS doesn't load or the summary request fails.
+body.bigid-auto-summary-active .ai-summarization-button,
+body.bigid-auto-summary-active .topic-map__additional-contents.toggle-summary {
+  display: none;
+}
