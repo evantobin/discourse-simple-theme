@@ -135,3 +135,15 @@ a {
   outline: 2px solid var(--tertiary);
   outline-offset: 2px;
 }
+
+// Homepage hero search: results push the page down in flow instead of
+// floating in an absolutely-positioned panel over whatever's below the
+// search box. Scoped to the welcome banner only — the header search-icon
+// dropdown elsewhere on the site is unaffected.
+.welcome-banner .search-menu-container.menu-panel-results .menu-panel {
+  position: static;
+  margin-top: 0.5em;
+  border: 1px solid var(--primary-low);
+  border-radius: var(--d-border-radius-large);
+  box-shadow: none;
+}
