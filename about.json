@@ -1,6 +1,24 @@
 {
-  "name": "Sam's Simple Theme",
+  "name": "BigID Simple Theme",
   "about_url": "https://meta.discourse.org/t/sams-personal-minimal-topic-list-design/23552",
   "license_url": "https://github.com/SamSaffron/discourse-simple-theme/blob/master/LICENSE.txt",
+  "assets": {
+    "mulish": "assets/fonts/Mulish-VariableFont_wght.ttf",
+    "mulish_italic": "assets/fonts/Mulish-Italic-VariableFont_wght.ttf"
+  },
+  "color_schemes": {
+    "BigID": {
+      "primary": "222222",
+      "secondary": "FFFFFF",
+      "tertiary": "44189D",
+      "quaternary": "6854A3",
+      "header_background": "FFFFFF",
+      "header_primary": "222222",
+      "highlight": "F1EBFF",
+      "danger": "C42727",
+      "success": "1FCC67",
+      "love": "EB2069"
+    }
+  },
   "screenshots": ["screenshots/light.png", "screenshots/dark.png"]
 }

@@ -75,7 +75,8 @@
 
     .topic-list-data {
       a.title:not(.badge-notification) {
-        color: var(--simple-theme-link-color);
+        color: var(--bigid-link-color);
+        font-weight: 600;
 
         &:hover {
           text-decoration: underline;
@@ -91,7 +92,8 @@
 
     &.visited {
       .topic-list-data a.title:not(.badge-notification) {
-        color: var(--simple-theme-visited-link-color);
+        color: var(--bigid-visited-link-color);
+        font-weight: 400;
       }
     }
   }
@@ -142,13 +144,51 @@
 
 /* topic page */
 nav.post-controls .actions .double-button button.has-like .d-icon {
-  color: var(--simple-theme-link-color);
+  color: var(--love);
 }
 
 img.avatar {
-  border-radius: 0.2em;
+  border-radius: 4px;
 }
 
 #suggested-topics td.main-link {
   width: 31em;
+}
+
+/* inline composer
+   The bigid-inline-composer initializer moves #reply-control into
+   #main-outlet and adds this body class; these rules take it out of its
+   fixed bottom-of-viewport position and render it as an in-flow card at
+   the end of the page content instead. */
+
+body.bigid-inline-composer {
+  #reply-control:not(.fullscreen) {
+    position: static;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: var(--d-border-radius-large);
+
+    &.open {
+      margin: 1.5em 0 2em;
+      border: 1px solid var(--primary-low);
+    }
+
+    .grippie {
+      // drag-to-resize is viewport-relative; it doesn't make sense in flow
+      display: none;
+    }
+  }
+
+  &.composer-open {
+    #main-outlet {
+      // core reserves the composer's height at the bottom of the outlet;
+      // in flow the composer occupies real space, so drop the reservation
+      padding-bottom: 2em;
+    }
+
+    // while composing, keep the composer directly under the conversation
+    .more-topics__container {
+      display: none;
+    }
+  }
 }

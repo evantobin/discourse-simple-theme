@@ -1,0 +1,132 @@
+// Mulish is BigID's brand font; bundled as a theme asset so no external
+// font host is needed.
+@font-face {
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url($mulish) format("truetype");
+}
+
+@font-face {
+  font-family: Mulish;
+  font-style: italic;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url($mulish_italic) format("truetype");
+}
+
+:root {
+  --font-family: "Mulish", -apple-system, "Segoe UI", sans-serif;
+  --heading-font-family: var(--font-family);
+
+  // BigID radii: 4px default (buttons, inputs), 8px for cards and dialogs
+  --d-border-radius: 4px;
+  --d-border-radius-large: 8px;
+
+  // BigID elevation: black-with-alpha only, no tinted shadows
+  --shadow-header: 0 1px 2px rgb(0 0 0 / 5%);
+  --shadow-card: 0 2px 6px rgb(0 0 0 / 8%);
+  --shadow-dropdown: 0 8px 20px rgb(0 0 0 / 12%);
+  --shadow-menu-panel: 0 8px 20px rgb(0 0 0 / 12%);
+  --shadow-composer: 0 8px 20px rgb(0 0 0 / 12%);
+  --shadow-modal: 0 16px 32px rgb(0 0 0 / 18%);
+}
+
+// Quiet, content-forward chrome: fine 1px borders instead of heavy shadows
+.d-header {
+  box-shadow: var(--shadow-header);
+  border-bottom: 1px solid var(--primary-low);
+}
+
+// BigID button hierarchy: filled purple primary, white outlined secondary,
+// text buttons that fill on hover
+.btn-primary {
+  &:hover,
+  &.btn-hover {
+    background: var(--bigid-purple-hover);
+  }
+
+  &:active {
+    background: var(--bigid-purple-press);
+  }
+}
+
+.btn-default {
+  background: var(--secondary);
+  border: 1px solid var(--primary-low);
+
+  &:hover {
+    background: var(--primary-very-low);
+  }
+}
+
+.btn-flat,
+.btn-transparent {
+  &:hover {
+    background: var(--primary-very-low);
+  }
+}
+
+// Inputs: 1px light border, 4px radius, purple focus border
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="number"],
+textarea,
+.select-kit .select-kit-header {
+  border: 1px solid var(--primary-low);
+  border-radius: var(--d-border-radius);
+
+  &:focus,
+  &:focus-within {
+    border-color: var(--tertiary);
+  }
+}
+
+// Overlays: 8px radius, 1px border, black-alpha elevation
+.d-modal__container {
+  border: 1px solid var(--primary-low);
+  border-radius: var(--d-border-radius-large);
+  box-shadow: var(--shadow-modal);
+}
+
+.fk-d-menu__inner-content,
+.select-kit .select-kit-body,
+.menu-panel,
+#user-card {
+  border: 1px solid var(--primary-low);
+  border-radius: var(--d-border-radius-large);
+  box-shadow: var(--shadow-dropdown);
+}
+
+// Tags follow the BigID chip pattern: grey pill, quiet text
+.discourse-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.65em;
+  border-radius: 9999px;
+  background: var(--primary-very-low);
+  color: var(--primary-high);
+
+  &:visited {
+    color: var(--primary-high);
+  }
+
+  &:hover {
+    background: var(--primary-low);
+    color: var(--primary);
+  }
+}
+
+a {
+  color: var(--bigid-link-color);
+}
+
+// BigID focus treatment: a visible ring, never removed
+:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 2px;
+}
